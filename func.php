@@ -10,7 +10,10 @@
 
 	    $id = $_GET['edid'];
 
-	    $query = "SELECT * FROM task where id = $id";
+$query = $conn->prepare("SELECT * FROM task WHERE id = ?");
+$query->bind_param('i', $id);
+$query->execute();
+$result = $query->get_result();
 	    $result = mysqli_query($conn, $query);
 
 	    if(mysqli_num_rows($result) == 1){
