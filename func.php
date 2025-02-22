@@ -10,7 +10,8 @@
 
 	    $id = $_GET['edid'];
 
-	    $query = "SELECT * FROM task where id = $id";
+$id = intval($_GET['edid']);
+$query = "SELECT * FROM task WHERE id = $id";
 	    $result = mysqli_query($conn, $query);
 
 	    if(mysqli_num_rows($result) == 1){
