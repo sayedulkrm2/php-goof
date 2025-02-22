@@ -8,9 +8,13 @@ if(isset($_POST['save_task'])){
 
     if(isset($_POST['edid'])) { 
         $edid = $_POST['edid'];
-        $query = "UPDATE task SET title = '$title' WHERE id = '$edid'";
+$stmt = $conn->prepare("INSERT INTO task(title) VALUES (?)");
+$stmt->bind_param('s', $title);
+$stmt->execute();
     }
-    else $query = "INSERT INTO task(title) VALUES ('$title')";
+$stmt = $conn->prepare("INSERT INTO task(title) VALUES (?)");
+$stmt->bind_param('s', $title);
+$stmt->execute();
     $result = mysqli_query($conn, $query);
 
     if(!$result){
@@ -24,7 +28,9 @@ if(isset($_POST['save_task'])){
 
         $id = $_GET['delid'];
 
-        $query = "DELETE FROM task WHERE id = $id";
+$stmt = $conn->prepare("INSERT INTO task(title) VALUES (?)");
+$stmt->bind_param('s', $title);
+$stmt->execute();
         $result = mysqli_query($conn, $query);
         if(!$result){
             die("Query failed");
