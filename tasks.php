@@ -10,7 +10,9 @@ if(isset($_POST['save_task'])){
         $edid = $_POST['edid'];
         $query = "UPDATE task SET title = '$title' WHERE id = '$edid'";
     }
-    else $query = "INSERT INTO task(title) VALUES ('$title')";
+$stmt = $conn->prepare("INSERT INTO task(title) VALUES (?)");
+$stmt->bind_param('s', $title);
+$stmt->execute();
     $result = mysqli_query($conn, $query);
 
     if(!$result){
